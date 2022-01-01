@@ -17,6 +17,7 @@
                     <th scope="col">email</th>
                     <th scope="col">Nacimiento</th>
                     <th scope="col">Creacion</th>
+                    <th scope="col">Editar</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,6 +28,10 @@
                     <td>{{cliente.email}}</td>
                     <td>{{cliente.bornAt}}</td>
                     <td>{{cliente.createAt}}</td>
+                    <td>
+                        <button class=" btn-outline-primary btn-sm" type="button" [routerLink]="['/clientes/form', cliente.id]"
+                        routerLinkActive="router-link-active">Editar</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
