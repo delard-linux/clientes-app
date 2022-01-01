@@ -1,6 +1,12 @@
 <div class="card border-primary mt-3 mb-3">
     <div class="card-body text-primary">
         <h5 class="card-title">Listado de clientes</h5>
+
+        <div clas="my2 text-left">
+            <button class=" btn-outline-primary btn-sm" type="button" [routerLink]="['/clientes/form']"
+                routerLinkActive="router-link-active">Crear cliente</button>
+        </div>
+
         <table class="table caption-top">
             <caption></caption>
             <thead>

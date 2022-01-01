@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ClienteService {
 
-private urlEndPoint: string = 'http://localhost:8080/api/clientes';
+private urlEndPoint: string = 'http://localhost:8082/api/clientes';
 
 constructor(private http: HttpClient) {}
 
