@@ -1,27 +1,43 @@
 <div class="card bg-light mt-3 mb-3">
     <div class="card-header">{{titulo}}</div>
     <div class="card-body">
-        
-        <form>
+
+        <form #clienteForm="ngForm">
 
             <div class="form-group row py-2">
                 <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)]="cliente.nombre" name="nombre">
+                    <input type="text" class="form-control" [(ngModel)]="cliente.nombre" name="nombre" 
+                        required minlength="1" #nombre="ngModel">
+                    <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched) && nombre.errors!=null">
+                        <div *ngIf="nombre.errors['required']!=null">Nombre es requerido</div>
+                        <div *ngIf="nombre.errors['minlength']!=null">Nombre debe tener al menos 1 caracter</div>
+                    </div>
                 </div>
             </div>
 
             <div class="form-group row py-2">
                 <label for="apellido" class="col-form-label col-sm-2">Apellido</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)]="cliente.apellido" name="apellido">
+                    <input type="text" class="form-control" [(ngModel)]="cliente.apellido" name="apellido"
+                        required minlength="1" #apellido="ngModel">
+                    <div class="alert alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched) && apellido.errors!=null">
+                        <div *ngIf="apellido.errors['required']!=null">Apellido es requerido</div>
+                        <div *ngIf="apellido.errors['minlength']!=null">Apellido debe tener al menos 1 caracter</div>
+                    </div>
                 </div>
             </div>
 
             <div class="form-group row py-2">
                 <label for="email" class="col-form-label col-sm-2">Email</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)]="cliente.email" name="email">
+                    <input type="text" class="form-control" [(ngModel)]="cliente.email" name="email"
+                        required email minlength="1" #email="ngModel">
+                    <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched) && email.errors!=null">
+                        <div *ngIf="email.errors['required']!=null">Email es requerido</div>
+                        <div *ngIf="email.errors['minlength']!=null">Email debe tener al menos 1 caracter</div>
+                        <div *ngIf="email.errors['email']!=null">Email debe tener el formato correcto</div>
+                    </div>
                 </div>
             </div>
 
@@ -34,13 +50,16 @@
 
             <div class="form-group row py-2">
                 <div class="col-sm-6">
-                    <button class="btn-outline-primary btn-sm" role="button" (click)="create()" 
-                            *ngIf="!cliente.id else elseblock">Crear</button>
+                    <button class="btn-outline-primary btn-sm" role="button" 
+                        (click)="create()" *ngIf="!cliente.id else elseblock" 
+                        [disabled]="!clienteForm.form.valid">Crear</button>
                     <ng-template #elseblock>
-                        <button class="btn-outline-primary btn-sm" role="button" (click)="update()">Actualizar</button>
+                        <button class="btn-outline-primary btn-sm" role="button" 
+                            (click)="update()" 
+                            [disabled]="!clienteForm.form.valid">Actualizar</button>
                     </ng-template>
                 </div>
-            </div>            
+            </div>
 
         </form>
 
