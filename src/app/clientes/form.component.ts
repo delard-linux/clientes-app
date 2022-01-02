@@ -25,9 +25,9 @@ export class FormComponent implements OnInit{
   create(): void {
     console.log(`Clicked! to create ${this.cliente.nombre}`);
     this.clienteService.create(this.cliente).subscribe(
-      cliente => {
+      json => {
         this.router.navigate(['/clientes']);
-        Swal.fire('Cliente Nuevo',`Cliente ${cliente.nombre} creado con éxito!`,'success');
+        Swal.fire('Cliente Nuevo',`Cliente ${json.cliente.nombre} ${json.cliente.apellido} creado con éxito!`,'success');
          });
   }
 
@@ -37,7 +37,7 @@ export class FormComponent implements OnInit{
         let id = params['id'];
         if(id){
           this.clienteService.getCliente(id).subscribe(
-            (cliente) => this.cliente = cliente);
+            (json) => this.cliente = json.cliente);
         }
 
       });
@@ -47,9 +47,9 @@ export class FormComponent implements OnInit{
   update(): void {
     console.log(`Clicked! to update ${this.cliente.nombre}`);
     this.clienteService.update(this.cliente).subscribe(
-      cliente => {
+      json => {
         this.router.navigate(['/clientes']);
-        Swal.fire('Cliente Actualizado',`Cliente ${cliente.nombre} actualizado con éxito!`,'success');
+        Swal.fire('Cliente Actualizado',`Cliente ${json.cliente.nombre} ${json.cliente.apellido} actualizado con éxito!`,'success');
          });
   }
 
