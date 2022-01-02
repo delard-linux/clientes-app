@@ -1,3 +1,7 @@
+<ul class="alert alert-danger" *ngIf="errores!=null && errores.length>0">
+    <li *ngFor="let err of errores">{{err}}</li>
+</ul>
+
 <div class="card bg-light mt-3 mb-3">
     <div class="card-header">{{titulo}}</div>
     <div class="card-body">
@@ -8,7 +12,7 @@
                 <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
                 <div class="col-sm-6">
                     <input type="text" class="form-control" [(ngModel)]="cliente.nombre" name="nombre" 
-                        required minlength="1" #nombre="ngModel">
+                        required minlength="4" #nombre="ngModel">
                     <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched) && nombre.errors!=null">
                         <div *ngIf="nombre.errors['required']!=null">Nombre es requerido</div>
                         <div *ngIf="nombre.errors['minlength']!=null">Nombre debe tener al menos 1 caracter</div>
@@ -20,7 +24,7 @@
                 <label for="apellido" class="col-form-label col-sm-2">Apellido</label>
                 <div class="col-sm-6">
                     <input type="text" class="form-control" [(ngModel)]="cliente.apellido" name="apellido"
-                        required minlength="1" #apellido="ngModel">
+                        required minlength="4" #apellido="ngModel">
                     <div class="alert alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched) && apellido.errors!=null">
                         <div *ngIf="apellido.errors['required']!=null">Apellido es requerido</div>
                         <div *ngIf="apellido.errors['minlength']!=null">Apellido debe tener al menos 1 caracter</div>
