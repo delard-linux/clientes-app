@@ -37,7 +37,7 @@
                     <button class="btn-outline-primary btn-sm" role="button" (click)="create()" 
                             *ngIf="!cliente.id else elseblock">Crear</button>
                     <ng-template #elseblock>
-                        <button class="btn-outline-primary btn-sm" role="button" (click)="update()" >Actualizar</button>
+                        <button class="btn-outline-primary btn-sm" role="button" (click)="update()">Actualizar</button>
                     </ng-template>
                 </div>
             </div>            

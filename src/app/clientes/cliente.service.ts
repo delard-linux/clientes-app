@@ -35,5 +35,10 @@ update(cliente: Cliente): Observable<Cliente> {
             {headers:this.httpHeaders});
 }
 
+delete(cliente: Cliente): Observable<number> {
+  return this.http.delete<number>(`${this.urlEndPoint}/${cliente.id}`, 
+            {headers:this.httpHeaders});
+}
+
 }
 

@@ -18,6 +18,7 @@
                     <th scope="col">Nacimiento</th>
                     <th scope="col">Creacion</th>
                     <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,9 +30,11 @@
                     <td>{{cliente.bornAt}}</td>
                     <td>{{cliente.createAt}}</td>
                     <td>
-                        <button class=" btn-outline-primary btn-sm" type="button" [routerLink]="['/clientes/form', cliente.id]"
+                        <button class=" btn-outline-primary btn-sm" type="button" name="editar" [routerLink]="['/clientes/form', cliente.id]"
                         routerLinkActive="router-link-active">Editar</button>
                     </td>
+                    <td>
+                        <button class=" btn-outline-danger btn-sm" type="button" name="eliminar" (click)='delete(cliente)'>Eliminar</button>                    </td>
                 </tr>
             </tbody>
         </table>
