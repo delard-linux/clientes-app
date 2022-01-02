@@ -24,10 +24,10 @@ constructor(private http: HttpClient,
               return clientes.map( cliente => {
                 cliente.nombre = cliente.nombre?.toUpperCase();
                 // Formato de fecha opcion 1
-                cliente.bornAt = cliente.bornAt?formatDate(cliente.bornAt,'EEEE dd, MMM yyyy','en-US'):cliente.bornAt;
+                //cliente.bornAt = cliente.bornAt?formatDate(cliente.bornAt,'EEEE dd, MMM yyyy','en-US'):cliente.bornAt;
                 // Formato de fecha opcion 2 en español
-                let datePipe = new DatePipe('es');
-                cliente.createAt = cliente.createAt?datePipe.transform(cliente.createAt,'EEEE dd, MMM yyyy HH')+'h':cliente.createAt;
+                //let datePipe = new DatePipe('es');
+                //cliente.createAt = cliente.createAt?datePipe.transform(cliente.createAt,'EEEE dd, MMM yyyy HH')+'h':cliente.createAt;
                 return cliente;
                 }
               );
