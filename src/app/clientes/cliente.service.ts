@@ -4,8 +4,7 @@ import { map, catchError, Observable, throwError} from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { formatDate, DatePipe, registerLocaleData} from '@angular/common';
-import localeEs from '@angular/common/locales/es';
+import { formatDate, DatePipe} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +26,6 @@ constructor(private http: HttpClient,
                 // Formato de fecha opcion 1
                 cliente.bornAt = cliente.bornAt?formatDate(cliente.bornAt,'EEEE dd, MMM yyyy','en-US'):cliente.bornAt;
                 // Formato de fecha opcion 2 en español
-                registerLocaleData(localeEs,'es');
                 let datePipe = new DatePipe('es');
                 cliente.createAt = cliente.createAt?datePipe.transform(cliente.createAt,'EEEE dd, MMM yyyy HH')+'h':cliente.createAt;
                 return cliente;
