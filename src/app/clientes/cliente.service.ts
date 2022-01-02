@@ -24,10 +24,18 @@ constructor(private http: HttpClient,
   }
 
   create(cliente: Cliente): Observable<any> {
-    return this.http.post<Cliente>(this.urlEndPoint, 
+    return this.http.post(this.urlEndPoint, 
           cliente, 
           {headers:this.httpHeaders})
-          .pipe(catchError( e => this.manageError(e)));
+          .pipe(
+              map((response:any) => response.cliente as Cliente),
+              catchError( e => {
+                if(e.status==400){
+                  return throwError(() => e);
+                }
+                return this.manageError(e);
+              })
+            );
   }
 
   getCliente(id: number): Observable<any> {
@@ -39,7 +47,15 @@ constructor(private http: HttpClient,
     return this.http.put(`${this.urlEndPoint}/${cliente.id}`, 
               cliente, 
               {headers:this.httpHeaders})
-              .pipe(catchError( e => this.manageError(e)));
+              .pipe(
+                map((response:any) => response.cliente as Cliente),
+                catchError( er => {
+                  if(er.status==400){
+                    return throwError(() => er);
+                  }
+                  return this.manageError(er);
+                })
+              );
   }
 
   delete(cliente: Cliente): Observable<any> {

@@ -10,8 +10,9 @@ import Swal from 'sweetalert2';
 })
 export class FormComponent implements OnInit{
 
-  cliente: Cliente = new Cliente();
-  titulo: string = "Crear Cliente";
+  private cliente: Cliente = new Cliente();
+  private titulo: string = "Crear Cliente";
+  private errores: string[] | undefined;
 
   constructor(private clienteService: ClienteService,
     private router: Router,
@@ -28,7 +29,12 @@ export class FormComponent implements OnInit{
       json => {
         this.router.navigate(['/clientes']);
         Swal.fire('Cliente Nuevo',`Cliente ${json.cliente.nombre} ${json.cliente.apellido} creado con éxito!`,'success');
-         });
+         }, 
+         err => {
+          this.errores = err.error.errors as string[];
+          console.error('Código del error de creacion desde el backend: ' + err.status);
+          console.error(err.error.errors);           }
+         );
   }
 
   cargarCliente(): void {
@@ -49,8 +55,13 @@ export class FormComponent implements OnInit{
     this.clienteService.update(this.cliente).subscribe(
       json => {
         this.router.navigate(['/clientes']);
-        Swal.fire('Cliente Actualizado',`Cliente ${json.cliente.nombre} ${json.cliente.apellido} actualizado con éxito!`,'success');
-         });
+        Swal.fire('Cliente Actualizado',`Cliente ${json.cliente.nombre} ${json.cliente.apellido} actualiado con éxito!`,'success');
+         }, 
+         err => {
+          this.errores = err.error.errors as string[];
+          console.error('Código del error de actualizacion desde el backend: ' + err.status);
+          console.error(err.error.errors);           }
+         );
   }
 
 }
