@@ -7,7 +7,8 @@
                 routerLinkActive="router-link-active">Crear cliente</button>
         </div>
 
-        <table class="table caption-top">
+        <table class="table caption-top" 
+                *ngIf="clientes!= null && clientes!= undefined && clientes.length>0 else elseblocknoclientes">
             <caption></caption>
             <thead>
                 <tr>
@@ -38,5 +39,9 @@
                 </tr>
             </tbody>
         </table>
+        <ng-template #elseblocknoclientes>
+            <div  
+            class="alert alert-info my-4">No hay clientes definidos en la base de datos</div>
+        </ng-template>
     </div>
 </div>
